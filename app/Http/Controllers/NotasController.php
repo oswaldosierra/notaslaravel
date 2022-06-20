@@ -14,7 +14,7 @@ class NotasController extends Controller
      */
     public function index()
     {
-        $notas = Notas::paginate(15);
+        $notas = Notas::where('user_id', auth()->id())->paginate(15);
         return view('notas.index', compact('notas'));
     }
 
