@@ -19,7 +19,7 @@
                         </div>
                         <input type="hidden" name="user_id" id="user_id" value="{{ auth()->id() }}">
                         <div>
-                          <button type="submit" class="border text-white border-indigo-500 bg-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Enviar</button>
+                          <button type="submit" class="border text-white border-indigo-500 bg-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Guardar</button>
                         </div>
                       </form>
                     </div>
