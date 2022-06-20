@@ -59,9 +59,9 @@ class NotasController extends Controller
      * @param  \App\Models\Notas  $notas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Notas $notas)
+    public function edit(Notas $nota)
     {
-        //
+        return view('notas.edit', compact('nota'));
     }
 
     /**
@@ -71,9 +71,12 @@ class NotasController extends Controller
      * @param  \App\Models\Notas  $notas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Notas $notas)
+    public function update(Request $request, Notas $nota)
     {
         //
+        $nota->update($request->all());
+
+        return redirect()->route('notas.show', $nota);
     }
 
     /**
