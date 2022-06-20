@@ -26,7 +26,10 @@
                                 <td>{{$nota->title}}</td>
                                 <td>{{$nota->content}}</td>
                                 <td class="flex">
-                                    <button type="button" class="border text-white border-indigo-500 bg-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Editar</button>
+                                    <a href="{{ route('notas.edit',$nota->id) }}">
+                                        <button type="button" class="border text-white border-indigo-500 bg-indigo-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Editar</button>
+                                    </a>
+
                                     <form method="POST" action="{{ route('notas.destroy', $nota->id) }}">
                                         @csrf
                                         @method('delete')
