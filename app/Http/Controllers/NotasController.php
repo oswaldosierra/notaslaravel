@@ -82,8 +82,9 @@ class NotasController extends Controller
      * @param  \App\Models\Notas  $notas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Notas $notas)
+    public function destroy(Notas $nota)
     {
-        //
+        $nota->delete();
+        return redirect()->route('notas.index');
     }
 }
