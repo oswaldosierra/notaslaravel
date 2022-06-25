@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NotasController extends Controller
 {
@@ -36,8 +37,17 @@ class NotasController extends Controller
      */
     public function store(Request $request)
     {
-        $nota = Notas::create($request->all());
+        $nota = new Notas();
 
+        $archivo = $request->file('archivo')->store('public');
+        $url = Storage::url($archivo);
+
+        $nota->title = $request->title;
+        $nota->content = $request->content;
+        $nota->user_id = $request->user_id;
+        $nota->archivo = $url;
+
+        $nota->save();
 
         return redirect()->route('notas.show', $nota);
     }
@@ -73,7 +83,6 @@ class NotasController extends Controller
      */
     public function update(Request $request, Notas $nota)
     {
-        //
         $nota->update($request->all());
 
         return redirect()->route('notas.show', $nota);

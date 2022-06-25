@@ -10,5 +10,5 @@ class Notas extends Model
     use HasFactory;
 
     // Campos Permitidos 
-    protected $fillable = ['title', 'content', 'user_id',];
+    protected $fillable = ['title', 'content', 'user_id', 'archivo'];
 }
