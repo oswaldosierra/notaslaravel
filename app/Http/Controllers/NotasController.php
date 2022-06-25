@@ -39,13 +39,15 @@ class NotasController extends Controller
     {
         $nota = new Notas();
 
-        $archivo = $request->file('archivo')->store('public');
-        $url = Storage::url($archivo);
-
         $nota->title = $request->title;
         $nota->content = $request->content;
         $nota->user_id = $request->user_id;
-        $nota->archivo = $url;
+
+        if ($request->hasFile('archivo')) {
+            $archivo = $request->file('archivo')->store('public');
+            $url = Storage::url($archivo);
+            $nota->archivo = $url;
+        }
 
         $nota->save();
 
