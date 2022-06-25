@@ -8,6 +8,9 @@
               <h2 class="text-gray-800 text-3xl font-semibold">{{$nota->title}}</h2>
               <p class="mt-2 text-gray-600">{{$nota->content}}</p>
             </div>
+            <div class="flex justify-center">
+              <img src="{{$nota->archivo}}" alt="" height="500px" width="500px">
+            </div>
         </div>
     </div>
 </x-app-layout>

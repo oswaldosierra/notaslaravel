@@ -21,7 +21,7 @@
                           <label for="content" class="mb-3 block text-base font-medium text-[#07074D]">
                             Archivo
                           </label>
-                          <input type="file" name="archivo" id="archivo">
+                          <input type="file" name="archivo" id="archivo" accept="image/*">
                         </div>
                         <input type="hidden" name="user_id" id="user_id" value="{{ auth()->id() }}">
                         <div>
