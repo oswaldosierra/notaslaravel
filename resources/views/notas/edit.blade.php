@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="mx-auto w-full max-w-[550px]">
-                    <form action="{{ route('notas.update', $nota->id) }}" method="POST">
+                    <form action="{{ route('notas.update', $nota->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-5">
@@ -23,22 +23,14 @@
 
                         @if ($nota->archivo)
                             <div class="flex justify-center flex-col items-center">
-                                <form method="POST" action="{{ route('notas.destroy', $nota->id) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit"
-                                        class="border text-white border-red-500 bg-red-500 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-red-600 focus:outline-none focus:shadow-outline">Eliminar</button>
-                                </form>
-                                <img src="{{ $nota->archivo }}" alt="" height="500px" width="500px">
-                            </div>
-                        @else
-                            <div class="mb-5">
-                                <label for="content" class="mb-3 block text-base font-medium text-[#07074D]">
-                                    Archivo
-                                </label>
-                                <input type="file" name="archivo" id="archivo" accept="image/*">
+                                <img id="uploadPreview1" src="{{ $nota->archivo }}" alt="" height="500px"
+                                    width="500px">
                             </div>
                         @endif
+                        <div class="flex items-center justify-center m-2">
+                            <input id="uploadImage1" type="file" name="archivo" onchange="previewImage(1);"
+                                accept="image/*" />
+                        </div>
 
                         <input type="hidden" name="user_id" id="user_id" value="{{ auth()->id() }}">
                         <div>
@@ -51,3 +43,12 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    function previewImage(nb) {
+        var reader = new FileReader();
+        reader.readAsDataURL(document.getElementById('uploadImage' + nb).files[0]);
+        reader.onload = function(e) {
+            document.getElementById('uploadPreview' + nb).src = e.target.result;
+        };
+    }
+</script>
