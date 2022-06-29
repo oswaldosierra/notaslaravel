@@ -85,8 +85,16 @@ class NotasController extends Controller
      */
     public function update(Request $request, Notas $nota)
     {
-        $nota->update($request->all());
-
+        $temp = $request->all();
+        if ($request->hasFile('archivo')) {
+            Storage::delete(str_replace('storage', 'public', $nota->archivo));
+            $archivo = $request->file('archivo')->store('public');
+            $url = Storage::url($archivo);
+            $temp["archivo"] = $url;
+        } else {
+            unset($temp["archivo"]);
+        }
+        $nota->update($temp);
         return redirect()->route('notas.show', $nota);
     }
 
